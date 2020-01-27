@@ -9,7 +9,6 @@ const {
   GraphQLSchema
 } = require('graphql');
 
-//TYPES
 const LaunchType = new GraphQLObjectType({
   name: 'Launch',
   fields: () => ({
@@ -39,7 +38,7 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(LaunchType),
       async resolve(parent, args) {
         try {
-          const url = 'https://api.spacexdata.com/v3/launches';
+          const url = 'https://api.spacexdata.com/v3/launches?limit=20';
           const res = await fetch(url);
           const data = await res.json();
           return data;
